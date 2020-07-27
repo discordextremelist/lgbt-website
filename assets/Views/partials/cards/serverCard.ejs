@@ -1,0 +1,55 @@
+<div class="column is-one-third" is-server-card>
+    <div class="box has-background-primary" style="overflow: hidden; height: 100%;">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-64x64">
+                    <img class="is-rounded" loading="lazy" src="<%= server.icon.url %>.<%= imageFormat %>?size=128" alt="<%= __("common.img.icon", server.name) %>" onerror="this.onerror = null;this.src = '/img/defaultavatar.<%= imageFormat %>';console.log('<%= __("common.img.loadFail", server._id) %>');" >
+                </figure>
+            </div>
+            <div style="overflow: hidden;" class="media-content">
+                <div class="content">
+                    <p>
+                    <span class="is-size-4 title has-text-default is-mobile">
+                        <span><%= server.name %></span>
+                    </span>
+                        <br />
+                        <%= server.shortDesc.length >= 64 ? server.shortDesc.slice(0, 64)+'\u2026' : server.shortDesc %>
+                    </p>
+                </div>
+                <div class="content-footer">
+                    <div class="buttons">
+                        <% if (search === true) { %>
+                            <a href="<%= linkPrefix %>/servers/<%= server._id %>" class="button is-default is-outlined">
+                                <span class="icon">
+                                  <i class="fas fa-comments-alt"></i>
+                                </span>
+                                <span><%= __("common.view.server") %></span>
+                            </a>
+                        <% } else { %>
+                            <a href="<%= linkPrefix %>/servers/<%= server._id %>" class="button is-default is-outlined">
+                                <span class="icon">
+                                <i class="fas fa-eye"></i>
+                                </span>
+                                <span><%= __("common.view") %></span>
+                            </a>
+                            <% if (req.user && profile === true && server.owner && server.owner.id === req.user.id) { %>
+                                <a href="<%= linkPrefix %>/servers/<%= server._id %>/edit" class="button is-warning is-outlined">
+                                    <span class="icon">
+                                      <i class="fas fa-pencil"></i>
+                                    </span>
+                                    <span><%= __("common.edit") %></span>
+                                </a>
+                            <% } %>
+                            <a target="_blank" rel="noopener" href="<%= server.links.invite %>" class="button is-blurple is-outlined">
+                                <span class="icon">
+                                  <i class="fas fa-users-medical"></i>
+                                </span>
+                                <span><%= __("common.join") %></span>
+                            </a>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</div>
