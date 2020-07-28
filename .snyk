@@ -1,0 +1,9 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.14.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  SNYK-JS-USERAGENT-174737:
+    - express-device > device > useragent:
+        reason: Patch currently not available. Revisit this in 30d.
+        expires: '2020-08-26T08:38:53.578Z'
+patch: {}

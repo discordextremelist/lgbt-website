@@ -43,6 +43,7 @@ import { sitemapIndex, sitemapGenerator } from "./Util/Middleware/sitemap";
 import i18n from "i18n";
 import * as settings from "../settings.json";
 import { MongoClient } from "mongodb";
+import { RedisOptions } from "ioredis";
 
 const app = express();
 
@@ -84,7 +85,7 @@ new Promise((resolve, reject) => {
     .then(async () => {
         dbReady = true;
 
-        let redisConfig;
+        let redisConfig: RedisOptions;
         if (settings.secrets.redis.sentinels.length > 0) {
             redisConfig = {
                 sentinels: settings.secrets.redis.sentinels,
@@ -106,7 +107,7 @@ new Promise((resolve, reject) => {
         console.time("Redis Cache & Core Refresh");
         
         await announcementCache.updateCache();
-        await featuredCache.updateFeaturedServers();
+        await featuredCache.updateFeaturedLGBTServers();
         await ddosMode.updateCache();
 
         console.timeEnd("Redis Cache & Core Refresh");

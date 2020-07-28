@@ -28,8 +28,8 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <% if (title !== "Home") { %>
-            <a class="navbar-item" href="/" aria-hidden="true">
-                <img style="width: auto !important; height: 48px !important;" alt="<% __("common.nav.logoAlt") %>" src="/img/logo-128px.<%= imageFormat %>" draggable="false">
+            <a class="navbar-item" href="<%= defaultWebURL %>" aria-hidden="true">
+                <img style="width: auto !important; height: 48px !important;" alt="<% __("common.nav.logoAlt") %>" src="<%= defaultWebURL %>/img/lgbt-128px.<%= imageFormat %>" draggable="false">
             </a>
         <% } %>
 
@@ -43,7 +43,7 @@
     <div id="navbar" class="navbar-menu">
         <div class="navbar-start"> 
 
-            <a class="navbar-item" href="<%= linkPrefix %>/">
+            <a class="navbar-item" href="<%= defaultWebURL %>/">
                 <span class="icon iconalign">
                     <i class="fad fa-house fa-swap-opacity" aria-hidden="true"></i>
                 </span>
@@ -57,7 +57,7 @@
                 <span><%= __("common.bots") %></span>
             </a>
 
-            <a class="navbar-item" href="<%= linkPrefix %>/servers">
+            <a class="navbar-item" href="<%= linkPrefix %>">
                 <span class="icon iconalign">
                     <i class="fad fa-rainbow" aria-hidden="true"></i>
                 </span>

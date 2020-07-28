@@ -19,20 +19,22 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import * as functions from "../Function/main";
 
-// TODO: change it from featured_servers to featured_lgbt_servers
-export async function getFeaturedServers(): Promise<delServer[]> {
-    const servers = await global.redis.get("featured_servers");
+export async function getFeaturedLGBTServers(): Promise<delServer[]> {
+    const servers = await global.redis?.get("featured_lgbt_servers");
     return JSON.parse(servers);
 }
 
-// TODO: change it from featured_servers to featured_lgbt_servers
-export async function updateFeaturedServers() {
-    const servers = functions
-        .shuffleArray(await global.db.collection("servers").find().toArray())
+export async function updateFeaturedLGBTServers() {
+    const servers = (functions
+        .shuffleArray(
+            (await global.db.collection("servers").find().toArray()).filter(
+                ({ status, tags }) => status && !status.reviewRequired && tags.includes("LGBT")
+            )
+        ) as delServer[])
         .slice(0, 6);
-    await global.redis.set("featured_servers", JSON.stringify(servers));
+    await global.redis?.set("featured_lgbt_servers", JSON.stringify(servers));
 }
 
 setInterval(async () => {
-    await updateFeaturedServers();
+    await updateFeaturedLGBTServers();
 }, 900000);

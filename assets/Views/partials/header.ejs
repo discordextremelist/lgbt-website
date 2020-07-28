@@ -7,7 +7,7 @@
 
     <link href="/img/logo.png" type="image/png" rel="shortcut-icon">
     <link href="/img/logo.png" type="image/png" rel="icon">
-    <link href="/css/theme/<%= preferredTheme %>/standard.css?v=<%= cssVersion %>" type="text/css" media="screen, print" rel="stylesheet">
+    <link href="<%= defaultWebURL %>/css/theme/<%= preferredTheme %>/standard.css?v=<%= cssVersion %>" type="text/css" media="screen, print" rel="stylesheet">
     <% if (pageType.bot === true) { 
         let color = "#b114ff"
         if(req.user) color = req.user.db.preferences.defaultColour
@@ -32,10 +32,10 @@
 
     <% if (usePreload === true) { %>
         <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" type="text/css" media="screen" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <link href="/fonts/fa/css/all.css?v=<%= cssVersion %>" type="text/css" media="screen" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link href="<%= defaultWebURL %>/fonts/fa/css/all.css?v=<%= cssVersion %>" type="text/css" media="screen" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <% } else { %>  
         <link href="https://fonts.googleapis.com/css?family=Lexend+Deca&display=swap" media="screen" rel="stylesheet">
-        <link href="/fonts/fa/css/all.css?v=<%= cssVersion %>" media="screen" rel="stylesheet">     
+        <link href="<%= defaultWebURL %>/fonts/fa/css/all.css?v=<%= cssVersion %>" media="screen" rel="stylesheet">     
     <% } %>
 
     <link rel="manifest" href="/manifest.json">

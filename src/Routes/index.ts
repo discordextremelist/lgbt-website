@@ -101,7 +101,7 @@ function sortAll() {
 router.get("/", variables, async (req: Request, res: Response) => {
     res.locals.premidPageInfo = res.__("premid.home");
 
-    const servers = await featuring.getFeaturedServers();
+    const servers = await featuring.getFeaturedLGBTServers();
 
     res.render("templates/index", {
         title: res.__("common.home"),
@@ -116,10 +116,13 @@ router.get("/servers", variables, async (req: Request, res: Response) => {
 
     if (!req.query.page) req.query.page = "1";
 
-    const servers = await serverCache.getAllServers();
+    const servers = (await serverCache.getAllServers()).filter(
+        ({ _id, status }) =>
+            status && !status.reviewRequired
+    );
 
     res.render("templates/servers/index", {
-        title: res.__("common.lgbtServers"),
+        title: res.__("common.lgbtServers.discord"),
         subtitle: res.__("common.lgbtServers.subtitle"),
         req,
         servers,
