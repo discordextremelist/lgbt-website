@@ -4,58 +4,58 @@
     "description": "Discord's unbiased list, giving small bots and servers a big chance!",
     "icons": [
         {
-            "src": "/img/logo.webp",
+            "src": "https://discordextremelist.xyz/img/lgbt.webp",
             "type": "image/webp",
             "sizes": "512x512"
         },
         {
-            "src": "/img/logo-192px.webp",
+            "src": "https://discordextremelist.xyz/img/lgbt-192px.webp",
             "type": "image/webp",
             "sizes": "192x192"
         },
         {
-            "src": "/img/logo-128px.webp",
+            "src": "https://discordextremelist.xyz/img/lgbt-128px.webp",
             "type": "image/webp",
             "sizes": "128x128"
         },
         {
-            "src": "/img/logo-64px.webp",
+            "src": "https://discordextremelist.xyz/img/lgbt-64px.webp",
             "type": "image/webp",
             "sizes": "64x64"
         },
         {
-            "src": "/img/logo-32px.webp",
+            "src": "https://discordextremelist.xyz/img/lgbt-32px.webp",
             "type": "image/webp",
             "sizes": "32x32"
         },
         {
-            "src": "/img/logo-maskable.png",
+            "src": "https://discordextremelist.xyz/img/lgbt-maskable.png",
             "type": "image/png",
             "sizes": "640x640",
             "purpose": "maskable"
         },
         {
-            "src": "/img/logo.png",
+            "src": "https://discordextremelist.xyz/img/lgbt.png",
             "type": "image/png",
             "sizes": "512x512"
         },
         {
-            "src": "/img/logo-192px.png",
+            "src": "https://discordextremelist.xyz/img/lgbt-192px.png",
             "type": "image/png",
             "sizes": "192x192"
         },
         {
-            "src": "/img/logo-128px.png",
+            "src": "https://discordextremelist.xyz/img/lgbt-128px.png",
             "type": "image/png",
             "sizes": "128x128"
         },
         {
-            "src": "/img/logo-64px.png",
+            "src": "https://discordextremelist.xyz/img/lgbt-64px.png",
             "type": "image/png",
             "sizes": "64x64"
         },
         {
-            "src": "/img/logo-32px.png",
+            "src": "https://discordextremelist.xyz/img/lgbt-32px.png",
             "type": "image/png",
             "sizes": "32x32"
         }
