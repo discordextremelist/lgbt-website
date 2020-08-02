@@ -49,6 +49,11 @@
                 <div class="column is-10">
                     <h1 class="is-size-1 <% if (mobile) { %>has-text-centered<% } %>">
                         <span id="serverName"><%= server.name %></span>
+                        <% if (server.status && server.status.reviewRequired === true) { %>
+                            <span style="vertical-align: middle;" title="<%= __("common.rank.reviewRequired") %>" class="icon is-medium is-size-3 iconalign">
+                                <i aria-hidden="true" class="fad fa-exclamation-triangle has-text-danger fa-1x"></i>
+                            </span>
+                        <% } %>
                     </h1>
                     <h2 class="subtitle <% if (mobile) { %>has-text-centered<% } %>"><%= server.shortDesc %></h2>
                     <% if (req.user) { %>
@@ -105,17 +110,27 @@
                                                 <p class="has-text-danger"><%= __("common.staffManagement.warning") %></p>
                                             </div>
                                             <hr class="dropdown-divider">
-                                            <a class="dropdown-item" href="<%= linkPrefix %>/servers/<%= server._id %>/sync">
+                                            <a class="dropdown-item" href="<%= defaultWebURL %><%= linkPrefix %>/servers/<%= server._id %>/sync">
                                                 <span class="icon"><i aria-hidden="true" class="fas fa-sync-alt"></i></span>
                                                 <span><%= __("common.sync") %></span>
                                             </a>
                                             <% if (req.user.db.rank.assistant === true) { %>
-                                                <a class="dropdown-item" href="<%= linkPrefix %>/servers/<%= server._id %>/edit">
+                                                <a class="dropdown-item" href="<%= defaultWebURL %><%= linkPrefix %>/servers/<%= server._id %>/edit">
                                                     <span class="icon"><i aria-hidden="true" class="fas fa-pencil"></i></span>
                                                     <span><%= __("common.edit") %></span>
                                                 </a>
                                             <% } %>
-                                            <a class="dropdown-item" href="<%= linkPrefix %>/servers/<%= server._id %>/remove">
+                                            <% if (server.status && server.status.reviewRequired === true) { %>
+                                                <a class="dropdown-item" href="<%= defaultWebURL %><%= linkPrefix %>/servers/<%= server._id %>/approve">
+                                                    <span class="icon"><i aria-hidden="true" class="fas fa-check"></i></span>
+                                                    <span><%= __("common.staff.approve") %></span>
+                                                </a>
+                                                <a class="dropdown-item" href="<%= defaultWebURL %><%= linkPrefix %>/servers/<%= server._id %>/decline">
+                                                    <span class="icon"><i aria-hidden="true" class="fas fa-minus"></i></span>
+                                                    <span><%= __("common.staff.decline") %></span>
+                                                </a>
+                                            <% } %>
+                                            <a class="dropdown-item" href="<%= defaultWebURL %><%= linkPrefix %>/servers/<%= server._id %>/remove">
                                                 <span class="icon"><i aria-hidden="true" class="fas fa-trash"></i></span>
                                                 <span><%= __("common.staff.remove") %></span>
                                             </a>
@@ -287,6 +302,16 @@
                                     });
                                 %>
                             <% } %>
+                            <% if (server.tags.includes("LGBT")) { %>
+                                <%- 
+                                    include("../../partials/tag.ejs", { 
+                                        contentColour: "is-danger", 
+                                        title: "",
+                                        content: __("common.tags.lgbt"),
+                                        type: "tag"
+                                    });
+                                %>
+                            <% } %>
                         </div>
                     <% } %>
                 </div>
@@ -308,7 +333,7 @@
         </section>
         <footer class="modal-card-foot">
             <div class="buttons">
-                <a class="button is-success" href="<%= linkPrefix %>/servers/<%= server._id %>/delete">
+                <a class="button is-success" href="<%= defaultWebURL %><%= linkPrefix %>/servers/<%= server._id %>/delete">
                     <span class="icon">
                         <i aria-hidden="true" class="fas fa-check-circle"></i>
                     </span>

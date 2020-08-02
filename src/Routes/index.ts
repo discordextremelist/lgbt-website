@@ -28,76 +28,6 @@ import { variables } from "../Util/Function/variables";
 
 const router = express.Router();
 
-const nickSorter = (a, b) =>
-    (a.nick || a.user.username).localeCompare(b.nick || b.user.username);
-function sortAll() {
-    let members = discord.bot.guilds.cache.get(settings.guild.main).members;
-    if (!members) throw new Error("Fetching members failed!");
-    const staff = [],
-        donators = [],
-        contributors = [];
-    for (const item of members.cache.filter((m) => !m.user.bot)) {
-        const member = item[1];
-        if (
-            member.roles.cache.has(settings.roles.admin) ||
-            member.roles.cache.has(settings.roles.assistant) ||
-            member.roles.cache.has(settings.roles.mod)
-        ) {
-            const admin = member.roles.cache.has(settings.roles.admin);
-            const assistant = member.roles.cache.has(settings.roles.assistant);
-            const mod = member.roles.cache.has(settings.roles.mod);
-            member.order = admin ? 3 : assistant ? 2 : mod ? 1 : 0;
-            member.rank = admin
-                ? "admin"
-                : assistant
-                ? "assistant"
-                : mod
-                ? "mod"
-                : null;
-            const user = discord.bot.users.cache.get(member.id);
-            member.avatar = user.avatar;
-            member.username = user.username;
-            member.discriminator = user.discriminator;
-            staff.push(member);
-        } else if (
-            member.roles.cache.has(settings.roles.booster) ||
-            member.roles.cache.has(settings.roles.donator)
-        ) {
-            const booster = member.roles.cache.has(settings.roles.booster);
-            const donator = member.roles.cache.has(settings.roles.donator);
-            member.order = booster ? 2 : donator ? 1 : 0;
-            member.rank = booster ? "booster" : "donator";
-            const user = discord.bot.users.cache.get(member.id);
-            member.avatar = user.avatar;
-            member.username = user.username;
-            member.discriminator = user.discriminator;
-            donators.push(member);
-        } else if (
-            member.roles.cache.has(settings.roles.translators) ||
-            member.roles.cache.has(settings.roles.testers)
-        ) {
-            const translator = member.roles.cache.has(
-                settings.roles.translators
-            );
-            const tester = member.roles.cache.has(settings.roles.testers);
-            member.order = translator ? 1 : tester ? 2 : 0;
-            member.rank = translator ? "translator" : "tester";
-            const user = discord.bot.users.cache.get(member.id);
-            member.avatar = user.avatar;
-            member.username = user.username;
-            member.discriminator = user.discriminator;
-            contributors.push(member);
-        }
-    }
-    return {
-        staff: staff.sort(nickSorter).sort((a, b) => b.order - a.order),
-        donators: donators.sort(nickSorter).sort((a, b) => b.order - a.order),
-        contributors: contributors
-            .sort(nickSorter)
-            .sort((a, b) => a.order - b.order)
-    };
-}
-
 router.get("/", variables, async (req: Request, res: Response) => {
     res.locals.premidPageInfo = res.__("premid.home");
 
@@ -117,8 +47,8 @@ router.get("/servers", variables, async (req: Request, res: Response) => {
     if (!req.query.page) req.query.page = "1";
 
     const servers = (await serverCache.getAllServers()).filter(
-        ({ _id, status }) =>
-            status && !status.reviewRequired
+        ({ _id, status, tags }) =>
+            status && !status.reviewRequired && tags.includes("LGBT")
     );
 
     res.render("templates/servers/index", {
