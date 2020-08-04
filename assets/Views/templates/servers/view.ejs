@@ -44,7 +44,7 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-2">
-                    <img class="image" title="<%= server.name %>'s Icon'" style="margin: auto; width: 128px; border-radius: 50%;" src="<%= server.icon.url %>.<%= imageFormat %>?size=512" alt="<%= server.name %>'s Icon" onerror="this.onerror = null;this.src = '/img/defaultavatar.<%= imageFormat %>';console.log('Failed to load item\'s avatar/icon, using default instead.');" draggable="false">
+                    <img class="image" title="<%= server.name %>'s Icon'" style="margin: auto; width: 128px; border-radius: 50%;" src="<%= server.icon.hash ? server.icon.url : `${defaultWebURL}/img/defaultavatar` %>.<%= imageFormat %>?size=512" alt="<%= server.name %>'s Icon" onerror="this.onerror = null;this.src = '<%= defaultWebURL %>/img/defaultavatar.<%= imageFormat %>';console.log('Failed to load item\'s avatar/icon, using default instead.');" draggable="false">
                 </div>
                 <div class="column is-10">
                     <h1 class="is-size-1 <% if (mobile) { %>has-text-centered<% } %>">
@@ -65,7 +65,7 @@
                                         icon: "fas fa-sync-alt", 
                                         tag: "a", 
                                         message: __("common.sync"), 
-                                        href: `${linkPrefix}/servers/${server._id}/sync`, 
+                                        href: `${defaultWebURL}${linkPrefix}/servers/${server._id}/sync`, 
                                         additional: ""
                                     });
                                 %>
@@ -75,7 +75,7 @@
                                         icon: "fas fa-pencil", 
                                         tag: "a", 
                                         message: __("common.edit"), 
-                                        href: `${linkPrefix}/servers/${server._id}/edit`, 
+                                        href: `${defaultWebURL}${linkPrefix}/servers/${server._id}/edit`, 
                                         additional: ""
                                     });
                                 %>
