@@ -42,6 +42,20 @@
                 <span><%= title %></span>
             </h1>
             <h2 class="subtitle"><%= subtitle %></h2>
+            <div class="buttons is-centered">
+                <a href="<%= defaultWebURL %><%= linkPrefix %>/servers/submit" class="button is-info">
+                    <span class="icon">
+                        <i class="fas fa-plus"></i>
+                    </span>
+                    <span><%= __("common.nav.me.submitServer") %></span>
+                </a>
+                <a href="<%= defaultWebURL %><%= linkPrefix %>/servers" class="button is-link">
+                    <span class="icon">
+                        <i class="fas fa-comments-alt"></i>
+                    </span>
+                    <span><%= __("common.servers.all") %></span>
+                </a>
+            </div>
         </div>
     </div>
 </section>
