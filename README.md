@@ -11,24 +11,9 @@ Licensing information viewable in the [LICENSE](https://github.com/discordextrem
 
 ## Requirements
 
-### Node.JS Framework
+### Node.js
 
-**We recommend that you use the latest fully supported version of NodeJS.**
-
-| Node Version        | Supported          |
-| ------------------- | ------------------ |
-| < v10               | 🔴 No Support      |
-| v10 Maintenance LTS | 🟡 Partial Support |
-| v11 End of Life     | 🟡 Partial Support |
-| v12 Active LTS      | 🟢 Full Support    |   
-| v13 Previous (EOL)  | 🟢 Full Support    |     
-| v14 Current         | 🟢 Full Support    |  
-
-| Name                    | Definition                                                                                                   |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------ |
-| 🟢 Full Support         | This code has been tested and is currently actively supported on this version.                               |
-| 🟡 Partial Support      | This code has is actively tested however support is deprecated and this could break in future.               |
-| 🔴 No Support           | This code has not been tested on this version and may break at any time or outright not work.                |     
+DEL requires Node.js 14.
 
 ### nodemon (Optional)
 
