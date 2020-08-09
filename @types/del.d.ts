@@ -197,6 +197,7 @@ interface delServer {
     shortDesc: string;
     longDesc: string;
     tags: string[];
+    previewChannel: string;
     owner: {
         id: string;
     };
