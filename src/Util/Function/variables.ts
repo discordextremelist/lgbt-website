@@ -165,12 +165,31 @@ export const variables = async (
             );
         }
 
-        req.user.db.preferences.theme === 0 || !req.user.db.preferences.theme
-            ? (res.locals.preferredTheme = "black")
-            : (res.locals.preferredTheme = "dark");
-        if (res.locals.preferredTheme === "dark") {
-            res.locals.siteThemeColour = "#131313";
-            res.locals.siteThemeColourDarker = "#131313";
+        switch (req.user.db.preferences.theme) {
+            case 0:
+                res.locals.preferredTheme = "black";
+                res.locals.siteThemeColour = "#0e0e0e";
+                res.locals.siteThemeColourDarker = "#000000";
+                res.locals.monacoTheme = "vs-dark";
+                break;
+            case 1:
+                res.locals.preferredTheme = "dark";
+                res.locals.siteThemeColour = "#131313";
+                res.locals.siteThemeColourDarker = "#131313";
+                res.locals.monacoTheme = "vs-dark";
+                break;
+            case 2:
+                res.locals.preferredTheme = "light";
+                res.locals.siteThemeColour = "#ECECEC";
+                res.locals.siteThemeColourDarker = "#ECECEC";
+                res.locals.monacoTheme = "vs-light";
+                break;
+            default:
+                res.locals.preferredTheme = "black";
+                res.locals.siteThemeColour = "#0e0e0e";
+                res.locals.siteThemeColourDarker = "#000000";
+                res.locals.monacoTheme = "vs-dark";
+                break;
         }
 
         const isBanned = await banList.check(req.user.id);
@@ -181,6 +200,14 @@ export const variables = async (
         ? (req.session.logoutJustCont = true)
         : (req.session.logoutJustCont = false);
     req.session.logoutJust = false;
+
+    res.locals.defaultColour = "#b114ff";
+    res.locals.foreground = "#ffffff";
+
+    if (req.user) {
+        res.locals.defaultColour = req.user.db.preferences.defaultColour || "#b114ff"
+        res.locals.foreground = req.user.db.preferences.defaultForegroundColour || "#ffffff"
+    }
 
     next();
 };
