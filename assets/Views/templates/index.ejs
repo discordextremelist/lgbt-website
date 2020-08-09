@@ -53,17 +53,17 @@
             <div class="columns is-multiline is-centered">
                 <%- servers.map(server => include("../partials/cards/serverCard.ejs", { server, search: false, profile: false })).join("") %>
             </div>
-            <div style="padding-top: 15px;">
-                <a href="/servers" class="button is-default is-large is-fullwidth is-outlined">
-                    <span class="icon">
-                        <i aria-hidden="true" class="fad fa-cloud-rainbow fa-1x"></i>
-                    </span>
-                    <span>
-                        <%= __("common.lgbtServers.more") %>
-                    </span>
-                </a>
-            </div>
         <% } %>
+        <div style="padding-top: 15px;">
+            <a href="/servers" class="button is-default is-large is-fullwidth is-outlined">
+                <span class="icon">
+                    <i aria-hidden="true" class="fad fa-cloud-rainbow fa-1x"></i>
+                </span>
+                <span>
+                    <%= __("common.lgbtServers.more") %>
+                </span>
+            </a>
+        </div>
     </div>
 </div>    
 <%- include("../partials/footer.ejs") %>
