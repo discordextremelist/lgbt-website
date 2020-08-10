@@ -25,13 +25,12 @@ export async function getFeaturedLGBTServers(): Promise<delServer[]> {
 }
 
 export async function updateFeaturedLGBTServers() {
-    const servers = (functions
-        .shuffleArray(
-            (await global.db.collection("servers").find().toArray()).filter(
-                ({ status, tags }) => status && !status.reviewRequired && tags.includes("LGBT")
-            )
-        ) as delServer[])
-        .slice(0, 6);
+    const servers = (functions.shuffleArray(
+        (await global.db.collection("servers").find().toArray()).filter(
+            ({ status, tags }) =>
+                status && !status.reviewRequired && tags.includes("LGBT")
+        )
+    ) as delServer[]).slice(0, 6);
     await global.redis?.set("featured_lgbt_servers", JSON.stringify(servers));
 }
 
