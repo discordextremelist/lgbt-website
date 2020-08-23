@@ -133,63 +133,6 @@ interface delUser {
     };
 }
 
-interface delBot {
-    _id: string;
-    _cacheID?: string;
-    clientID: string;
-    name: string;
-    prefix: string;
-    library: string;
-    tags: string[];
-    vanityUrl: string;
-    serverCount: number;
-    shardCount: number;
-    token: string;
-    flags: number;
-    shortDesc: string;
-    longDesc: string;
-    modNotes: string;
-    editors: string[];
-    owner: {
-        id: string;
-    };
-    avatar: {
-        hash: string;
-        url: string;
-    };
-    votes: {
-        positive: string[];
-        negative: string[];
-    };
-    links: {
-        invite: string;
-        support: string;
-        website: string;
-        donation: string;
-        repo: string;
-        privacyPolicy: string;
-    };
-    social: {
-        twitter: string;
-    };
-    theme: {
-        useCustomColour: boolean;
-        colour: string;
-        banner: string;
-    }
-    widgetbot: {
-        channel: string;
-        options: string;
-        server: string;
-    };
-    status: {
-        approved: boolean;
-        premium: boolean;
-        siteBot: boolean;
-        archived: boolean;
-    };
-}
-
 interface delServer {
     _id: string;
     inviteCode: string;
@@ -215,47 +158,6 @@ interface delServer {
     };
 }
 
-interface delTemplate {
-    _id: string;
-    name: string;
-    region: string;
-    locale: string;
-    afkTimeout: number;
-    verificationLevel: number;
-    defaultMessageNotifications: number;
-    explicitContent: number;
-    roles: discordRole[];
-    channels: discordChannel[];
-    usageCount: number;
-    shortDesc: string;
-    longDesc: string;
-    tags: string[];
-    fromGuild: string;
-    owner: {
-        id: string;
-    };
-    icon: {
-        hash: string;
-        url: string;
-    };
-    links: {
-        linkToServerPage: boolean;
-        template: string;
-    };
-}
-
-interface auditLog {
-    type: string;
-    executor: string;
-    target: string;
-    date: number;
-    reason: string;
-    details: {
-        new: any;
-        old: any;
-    };
-}
-
 interface staffStrike {
     executorName?: string;
     executor: string;
@@ -268,14 +170,4 @@ interface staffWarning {
     executor: string;
     reason: string;
     date: number;
-}
-
-interface library {
-    _id?: string;
-    name?: string;
-    language: string;
-    links: {
-        docs: string;
-        repo: string;
-    };
 }

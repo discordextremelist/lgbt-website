@@ -28,7 +28,6 @@ declare global {
             redis: Redis;
             announcement: announcement;
             ddosMode: ddosMode;
-            libs: library[];
             db: Db;
         }
     }
