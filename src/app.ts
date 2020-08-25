@@ -51,24 +51,8 @@ const app = express();
 if (!settings.website.dev) Sentry.init({ dsn: settings.secrets.sentry, release: "lgbt-website@" + process.env.npm_package_version, environment: "production" });
 if (!settings.website.dev) app.use(Sentry.Handlers.requestHandler() as express.RequestHandler);
 
-let dbReady: boolean = false;
-
 app.set("views", path.join(__dirname + "/../../assets/Views"));
 app.use(express.static(path.join(__dirname + "/../../assets/Public")));
-
-app.get("*", (req: Request, res: Response, next: () => void) => {
-    if (
-        dbReady === false &&
-        !req.url.includes(".css") &&
-        !req.url.includes(".woff2")
-    ) {
-        return res
-            .status(503)
-            .sendFile(
-                path.join(__dirname + "/../../assets/Public/loading.html")
-            );
-    } else next();
-});
 
 new Promise((resolve, reject) => {
     console.time("Mongo TTL");
@@ -87,8 +71,6 @@ new Promise((resolve, reject) => {
     );
 })
     .then(async () => {
-        dbReady = true;
-
         let redisConfig: RedisOptions;
         if (settings.secrets.redis.sentinels.length > 0) {
             redisConfig = {
