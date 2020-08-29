@@ -31,6 +31,17 @@ export async function updateFeaturedLGBTServers() {
                 status && !status.reviewRequired && tags.includes("LGBT")
         )
     ) as delServer[]).slice(0, 6);
+    
+    for (const server of servers as delServer[]) {
+        delete server.inviteCode;
+        delete server.longDesc;
+        delete server.previewChannel;
+        delete server.owner;
+        delete server.links.website;
+        delete server.links.donation;
+        delete server.status;
+    }
+    
     await global.redis?.set("featured_lgbt_servers", JSON.stringify(servers));
 }
 
