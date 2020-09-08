@@ -33,7 +33,7 @@ const Entities = require("html-entities").XmlEntities;
 const entities = new Entities();
 const router = express.Router();
 
-router.get("/:id", variables, async (req: Request, res: Response, next) => {
+router.get("/:id", variables, async (req: Request, res: Response) => {
     res.locals.pageType = {
         server: true,
         bot: false

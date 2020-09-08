@@ -89,7 +89,7 @@ export function parseDate(__, locale: string, rawDate: number) {
     }
 }
 
-export function shuffleArray(array) {
+export function shuffleArray<T>(array: T[]) {
     let currentIndex = array.length,
         temporaryValue,
         randomIndex;

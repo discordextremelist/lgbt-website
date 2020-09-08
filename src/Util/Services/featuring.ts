@@ -25,12 +25,12 @@ export async function getFeaturedLGBTServers(): Promise<delServer[]> {
 }
 
 export async function updateFeaturedLGBTServers() {
-    const servers = (functions.shuffleArray(
-        (await global.db.collection("servers").find().toArray()).filter(
+    const servers = functions.shuffleArray(
+        (await global.db.collection("servers").find().toArray() as delServer[]).filter(
             ({ status, tags }) =>
                 status && !status.reviewRequired && tags.includes("LGBT")
         )
-    ) as delServer[]).slice(0, 6);
+    ).slice(0, 6);
     
     for (const server of servers as delServer[]) {
         delete server.inviteCode;
