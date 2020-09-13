@@ -25,23 +25,26 @@ import * as settings from "../../../settings.json";
 import * as releaseInfo from "../../../release-info.json";
 import * as announcementCache from "../Services/announcementCaching";
 import * as banList from "../Services/banned";
+import { URLSearchParams } from "url";
+import { themes } from "../../../@types/enums";
 
 export const variables = async (
     req: Request,
     res: Response,
     next: () => void
 ) => {
-    if (req.originalUrl.includes("?setLang=t")) {
-        return res.redirect(req.originalUrl.replace("?setLang=t", ""));
-    }
+    if (req.query.setLang || req.query.localeLayout) {
+        let params = new URLSearchParams(
+            req.query as { setLang?: "t"; localeLayout?: "rtl" | "ltr" }
+        );
+        params.delete("setLang");
+        params.delete("localeLayout");
 
-    if (
-        req.originalUrl.includes("?localeLayout=rtl") ||
-        req.originalUrl.includes("?localeLayout=ltr")
-    ) {
-        let returnURL = req.originalUrl.replace("?localeLayout=rtl", "");
-        returnURL = returnURL.replace("?localeLayout=ltr", "");
-        return res.redirect(returnURL);
+        return res.redirect(
+            req.baseUrl +
+                (req.path === "/" ? "" : req.path) +
+                (params.toString() && `?${params}`)
+        );
     }
 
     req.browser = browser(req.headers["user-agent"]);
@@ -135,9 +138,30 @@ export const variables = async (
         res.locals.imageFormat = "png";
     }
 
-    res.locals.preferredTheme = "black";
-    res.locals.siteThemeColour = "#0e0e0e";
-    res.locals.siteThemeColourDarker = "#000000";
+    let theme = req.user?.db?.preferences?.theme
+
+    if (req.query.theme) theme = themes[req.query.theme as string]
+
+    switch (theme) {
+        case themes.dark:
+            res.locals.preferredTheme = "dark";
+            res.locals.siteThemeColour = "#131313";
+            res.locals.siteThemeColourDarker = "#131313";
+            res.locals.monacoTheme = "vs-dark";
+            break;
+        case themes.light:
+            res.locals.preferredTheme = "light";
+            res.locals.siteThemeColour = "#ECECEC";
+            res.locals.siteThemeColourDarker = "#ECECEC";
+            res.locals.monacoTheme = "vs-light";
+            break;
+        default:
+            res.locals.preferredTheme = "black";
+            res.locals.siteThemeColour = "#0e0e0e";
+            res.locals.siteThemeColourDarker = "#000000";
+            res.locals.monacoTheme = "vs-dark";
+            break;
+    }
 
     if (req.user) {
         const user = await global.db
@@ -158,33 +182,6 @@ export const variables = async (
                     }
                 }
             );
-        }
-
-        switch (req.user.db.preferences.theme) {
-            case 0:
-                res.locals.preferredTheme = "black";
-                res.locals.siteThemeColour = "#0e0e0e";
-                res.locals.siteThemeColourDarker = "#000000";
-                res.locals.monacoTheme = "vs-dark";
-                break;
-            case 1:
-                res.locals.preferredTheme = "dark";
-                res.locals.siteThemeColour = "#131313";
-                res.locals.siteThemeColourDarker = "#131313";
-                res.locals.monacoTheme = "vs-dark";
-                break;
-            case 2:
-                res.locals.preferredTheme = "light";
-                res.locals.siteThemeColour = "#ECECEC";
-                res.locals.siteThemeColourDarker = "#ECECEC";
-                res.locals.monacoTheme = "vs-light";
-                break;
-            default:
-                res.locals.preferredTheme = "black";
-                res.locals.siteThemeColour = "#0e0e0e";
-                res.locals.siteThemeColourDarker = "#000000";
-                res.locals.monacoTheme = "vs-dark";
-                break;
         }
 
         const isBanned = await banList.check(req.user.id);
