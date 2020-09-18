@@ -9,10 +9,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@master
       - name: Create a Sentry.io release
-        uses: discordextremelist/sentry-releases-action@v1.2.2
+        uses: discordextremelist/sentry-releases-action@v1.2.3
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: discord-extreme-list
+          SENTRY_ORG: delly
           SENTRY_PROJECT: lgbt-website
         with:
           tagName: ${{ github.ref }}
