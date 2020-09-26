@@ -161,7 +161,7 @@ router.get(
                         }
                     }
                 }
-            });
+            } as delUser);
         } else {
             if (user.rank.mod === true) {
                 await global.db.collection("users").updateOne(
@@ -203,7 +203,7 @@ router.get(
                                 hash: req.user.avatar,
                                 url: `https://cdn.discordapp.com/avatars/${req.user.id}/${req.user.avatar}`
                             }
-                        }
+                        } as delUser
                     }
                 );
             }

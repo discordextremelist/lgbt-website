@@ -51,7 +51,7 @@ if (!settings.website.dev) app.use(Sentry.Handlers.requestHandler() as express.R
 app.set("views", path.join(__dirname + "/../../assets/Views"));
 app.use(express.static(path.join(__dirname + "/../../assets/Public")));
 
-new Promise((resolve, reject) => {
+new Promise<void>((resolve, reject) => {
     console.time("Mongo TTL");
     MongoClient.connect(
         settings.secrets.mongo.uri,
