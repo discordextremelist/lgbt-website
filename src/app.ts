@@ -32,13 +32,10 @@ import logger from "morgan";
 import * as announcementCache from "./Util/Services/announcementCaching";
 import * as featuredCache from "./Util/Services/featuring";
 import * as ddosMode from "./Util/Services/ddosMode";
-import * as banned from "./Util/Services/banned";
-import * as discord from "./Util/Services/discord";
 
-import * as languageHandler from "./Util/Middleware/languageHandler";
+import languageHandler from "./Util/Middleware/languageHandler";
 
 import { variables } from "./Util/Function/variables";
-import { monacoIsStupid } from "./Util/Middleware/monacoIsStupid";
 import { sitemapIndex, sitemapGenerator } from "./Util/Middleware/sitemap";
 
 import i18n from "i18n";
@@ -143,7 +140,7 @@ new Promise((resolve, reject) => {
 
         app.use(i18n.init);
 
-        app.get("/:lang/auth/login", languageHandler.globalHandler, variables, (req: Request, res: Response, next) => {
+        app.get("/:lang/auth/login", languageHandler, variables, (req: Request, res: Response, next) => {
             if (req.user) res.redirect("/");
             
             res.locals.premidPageInfo = res.__("premid.login");
@@ -160,8 +157,7 @@ new Promise((resolve, reject) => {
 
         // Locale handler.
         // Don't put anything below here that you don't want it's locale to be checked whatever (broken english kthx)
-        app.use(["/:lang", "/"], languageHandler.homeHandler);
-        app.use("/:lang/*", languageHandler.globalHandler);
+        app.use(["/:lang", "/"], languageHandler);
 
         app.use("/:lang/sitemap.xml", sitemapGenerator);
 
