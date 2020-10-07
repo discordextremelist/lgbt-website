@@ -41,7 +41,7 @@ class Client extends Discord.Client {
 
 export const bot = new Client({
     allowedMentions: { parse: [] },
-    ws: { intents: ["GUILDS", "GUILD_MEMBERS"] }
+    ws: { intents: ["GUILDS"] }
 });
 
 bot.on("ready", async () => {
