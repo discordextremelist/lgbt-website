@@ -7,7 +7,7 @@
                         <a class="has-text-white" href="<%= defaultWebURL %><%= linkPrefix %>/users/<%= server.owner.id %>"><%= serverOwner ? serverOwner.fullUsername : 'Unknown' %></a>
                     </span>
                 <% } else { %>
-                    <span class="tag <%= contentColour %>"><%= content %></span>
+                    <span class="tag <%= contentColour %>" <% if (locals.id) { %>id="<%= id %>"<% } %>><%= content %></span>
                 <% } %> 
                 <span class="tag is-dark"><%= title %></span>
             </div>
@@ -21,7 +21,7 @@
                         <a class="has-text-white" href="<%= defaultWebURL %><%= linkPrefix %>/users/<%= server.owner.id %>"><%= serverOwner ? serverOwner.fullUsername : 'Unknown' %></a>
                     </span>
                 <% } else { %>
-                    <span class="tag <%= contentColour %>"><%= content %></span>
+                    <span class="tag <%= contentColour %>" <% if (locals.id) { %>id="<%= id %>"<% } %>><%= content %></span>
                 <% } %> 
             </div>
         </div>
