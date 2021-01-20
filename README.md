@@ -6,7 +6,10 @@
 [![Code style](https://img.shields.io/badge/code%20style-prettier-ff69b4)](https://github.com/prettier/prettier)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdiscordextremelist%2Flgbt-website.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdiscordextremelist%2Flgbt-website?ref=badge_shield)
 
-Licensing information viewable in the [LICENSE](https://github.com/discordextremelist/lgbt-website/blob/master/LICENSE) file.
+## License
+Project licensing information is available in the [LICENSE](https://github.com/discordextremelist/lgbt-website/blob/master/LICENSE) file.
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdiscordextremelist%2Flgbt-website.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdiscordextremelist%2Flgbt-website?ref=badge_large)
 
 # Setup
 
@@ -61,7 +64,3 @@ We reccomend when running DEL in production you use the `npm run pm2` command, h
 ### Development/Testing
 
 We reccomend you run DEL using the `npm run start` command.
-
-
-## License
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdiscordextremelist%2Flgbt-website.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdiscordextremelist%2Flgbt-website?ref=badge_large)
