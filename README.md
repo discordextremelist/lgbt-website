@@ -5,10 +5,7 @@
 ![Snyk vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/discordextremelist/lgbt-website)
 [![Code style](https://img.shields.io/badge/code%20style-prettier-ff69b4)](https://github.com/prettier/prettier)
 
-## License
-Project licensing information is available in the [LICENSE](https://github.com/discordextremelist/lgbt-website/blob/master/LICENSE) file.
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdiscordextremelist%2Flgbt-website.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdiscordextremelist%2Flgbt-website?ref=badge_large)
+Licensing information viewable in the [LICENSE](https://github.com/discordextremelist/lgbt-website/blob/master/LICENSE) file.
 
 # Setup
 
