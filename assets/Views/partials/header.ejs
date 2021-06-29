@@ -8,6 +8,7 @@
     <link href="<%= defaultWebURL %>/img/lgbt.png" type="image/png" rel="shortcut-icon">
     <link href="<%= defaultWebURL %>/img/lgbt.png" type="image/png" rel="icon">
     <link href="<%= defaultWebURL %>/css/theme/<%= preferredTheme %>/standard.css?v=<%= cssVersion %>" media="screen, print" rel="stylesheet">
+    <script async src="https://arc.io/widget.min.js#ctdPkpZZ"></script>
     <% if (pageType.bot === true) { 
         let color = "#b114ff"
         if(req.user) color = req.user.db.preferences.defaultColour
@@ -166,8 +167,6 @@
     <meta name="msapplication-config" content="/browserconfig.xml">
 
     <% if (htmlDir === "rtl") { %><%- include("./rtl.ejs") %><% } %>
-    
-    <script async src="https://arc.io/widget.min.js#ctdPkpZZ"></script>
     
     <script type="application/ld+json">
         {
