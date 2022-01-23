@@ -26,7 +26,7 @@ export async function getFeaturedLGBTServers(): Promise<delServer[]> {
 
 export async function updateFeaturedLGBTServers() {
     const servers = functions.shuffleArray(
-        (await global.db.collection("servers").find().toArray() as delServer[]).filter(
+        (await global.db.collection<delServer>("servers").find().toArray() as delServer[]).filter(
             ({ status, tags }) =>
                 status && !status.reviewRequired && tags.includes("LGBT")
         )

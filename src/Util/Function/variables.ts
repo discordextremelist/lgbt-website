@@ -166,7 +166,7 @@ export const variables = async (
 
     if (req.user) {
         const user = await global.db
-            .collection("users")
+            .collection<delUser>("users")
             .findOne({ _id: req.user.id });
         req.user.db = user;
 

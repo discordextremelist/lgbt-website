@@ -69,11 +69,11 @@ router.get(
     passport.authenticate("discord", { failureRedirect: "/auth/login" }),
     async (req: Request, res: Response, next) => {
         const user: delUser = await global.db
-            .collection("users")
+            .collection<delUser>("users")
             .findOne({ _id: req.user.id });
 
         if (!user) {
-            await global.db.collection("users").insertOne({
+            await global.db.collection<delUser>("users").insertOne({
                 _id: req.user.id,
                 token: req.user.accessToken,
                 name: req.user.username,

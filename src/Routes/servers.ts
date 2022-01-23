@@ -44,7 +44,7 @@ router.get("/:id", variables, async (req: Request, res: Response) => {
     );
     if (!server) {
         server = await global.db
-            .collection("servers")
+            .collection<delServer>("servers")
             .findOne({ _id: req.params.id });
         if (!server)
             return res.status(404).render("status", {
@@ -62,7 +62,7 @@ router.get("/:id", variables, async (req: Request, res: Response) => {
     );
     if (!serverOwner) {
         serverOwner = await global.db
-            .collection("users")
+            .collection<delUser>("users")
             .findOne({ _id: server.owner.id });
     }
 
